@@ -8,23 +8,23 @@ describe('suite', () => {
             expect(deckId.status).to.equal(200)
 
             cy.drawCardsFromDeck(deckId.body.deck_id, 3)
-            
-            cy.get('@temp').then(cards => {
+
+            cy.get('@cards').then(cards => {
                 expect(cards.status).to.equal(200)
 
                 cards.body.cards.forEach(elem => {
                     //ADDING CARDS TO PILE 1
                     cy.addCardsToPile(deckId.body.deck_id, elem.code, 'pile1')
-                    
+
                     usedCards.push(elem.code)
                 });
             })
 
             cy.drawCardsFromDeck(deckId.body.deck_id, 3)
 
-            cy.get('@temp').then(cards => {
+            cy.get('@cards').then(cards => {
                 expect(cards.status).to.equal(200)
-                
+
                 cards.body.cards.forEach(elem => {
                     //ADDING CARDS TO PILE 2
                     cy.addCardsToPile(deckId.body.deck_id, elem.code, 'pile2')

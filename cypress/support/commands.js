@@ -40,8 +40,7 @@ Cypress.Commands.add('drawCardsFromDeck', (deckID, cardsAmount) => {
         method: 'GET',
         url: `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=${cardsAmount}`
     }).then(res => {
-        cy.wrap(res).as('temp')
-
+        cy.wrap(res).as('cards')
     })
 })
 
